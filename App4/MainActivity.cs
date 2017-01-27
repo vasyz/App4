@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using Microsoft.CSharp;
 
 using ChatProject.Tools;
+using System.Collections.Generic;
 
 namespace ChatProject
 {
@@ -25,8 +26,12 @@ namespace ChatProject
             TextView tw = FindViewById<TextView>(Resource.Id.textView1);
             btn.Click += (sender, e) =>
             {
-                ChatMessage testingMessage = Tools.ChatRequest.GetChatMessage();
-                tw.Text = testingMessage.Author + ": " + testingMessage.Text + "\n";
+                List<ChatMessage> chatHistory = Tools.ChatRequest.GetChatMessage();
+                tw.Text = "";
+                foreach (var msg in chatHistory)
+                {
+                    tw.Text += msg.Author + ": " + msg.Text + "\n";
+                }
             };
         }
 

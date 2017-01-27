@@ -18,7 +18,7 @@ namespace ChatProject.Tools
 {
     class ChatRequest
     {
-        public static ChatMessage GetChatMessage()
+        public static List<ChatMessage> GetChatMessage()
         {
             string link = "http://activator.esy.es/chat.php?action=select";
 
@@ -30,11 +30,18 @@ namespace ChatProject.Tools
             StreamReader reader = new StreamReader(chatResponse.GetResponseStream());
             chatResponse.Close();
             var data = reader.ReadToEnd();
-            var jsonData = JObject.Parse(data);
-            ChatMessage testingMessage = new ChatMessage(jsonData["_id"].ToString(), jsonData["author"].ToString(),
-                jsonData["client"].ToString(), jsonData["data"].ToString(), jsonData["text"].ToString());
+            var jsonList = JArray.Parse(data);
+            List<ChatMessage> chatHistory = new List<ChatMessage>();
+            foreach (var jsonData in jsonList)
+            {
+                ChatMessage testingMessage = new ChatMessage(jsonData["_id"].ToString(),
+                    jsonData["author"].ToString(), jsonData["client"].ToString(),
+                    jsonData["data"].ToString(), jsonData["text"].ToString());
+                chatHistory.Add(testingMessage);
+            }
+            
 
-            return testingMessage;
+            return chatHistory;
         }
     }
 }
