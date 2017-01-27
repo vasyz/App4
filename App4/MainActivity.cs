@@ -10,7 +10,9 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using Microsoft.CSharp;
 
-namespace App4
+using ChatProject.Tools;
+
+namespace ChatProject
 {
     [Activity(Label = "App4", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
@@ -23,31 +25,11 @@ namespace App4
             TextView tw = FindViewById<TextView>(Resource.Id.textView1);
             btn.Click += (sender, e) =>
             {
-                tw.Text = testrequest();
+                ChatMessage testingMessage = Tools.ChatRequest.GetChatMessage();
+                tw.Text = testingMessage.Author + ": " + testingMessage.Text + "\n";
             };
         }
 
-        string testrequest()
-        {
-
-            HttpWebRequest request =
-                    (HttpWebRequest)WebRequest.Create(
-                    "http://activator.esy.es/chat.php?action=select");
-
-            request.Method = "GET";
-            request.Accept = "application/json";
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            var chatResponse = reader.ReadToEnd();
-            response.Close();
-       
-            dynamic json = JObject.Parse(chatResponse);
-            string toRet = json.author;
-
-            
-            return toRet;
-        }
     }
 }
 
