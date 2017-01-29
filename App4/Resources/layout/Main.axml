@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="vertical">
     <Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,7 +12,13 @@
         android:text="Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
+        android:id="@+id/textView1"
+        android:scrollbars="vertical"
+        android:maxHeight="300dp"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarSize="2dp"
+        android:scrollbarStyle="insideInset"
+        android:verticalScrollbarPosition="defaultPosition" />
     <EditText
         android:inputType="textPassword"
         android:layout_width="match_parent"
@@ -23,5 +30,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/button1"
         android:layout_marginTop="67.5dp"
-        android:layout_marginLeft="140.0dp" />
+        android:layout_marginLeft="140.0dp"
+        android:fadeScrollbars="true" />
 </LinearLayout>

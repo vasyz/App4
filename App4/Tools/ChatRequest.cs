@@ -22,13 +22,13 @@ namespace ChatProject.Tools
         {
             string link = "http://activator.esy.es/chat.php?action=select";
 
-            HttpWebRequest chatRequest =
+            HttpWebRequest chatRequest = 
                     (HttpWebRequest)WebRequest.Create(link);
             chatRequest.Method = "GET";
             chatRequest.Accept = "application/json";
             HttpWebResponse chatResponse  = (HttpWebResponse)chatRequest.GetResponse();
-            StreamReader reader = new StreamReader(chatResponse.GetResponseStream());
-            chatResponse.Close();
+            var responseStream = chatResponse.GetResponseStream();
+            StreamReader reader = new StreamReader(responseStream);
             var data = reader.ReadToEnd();
             var jsonList = JArray.Parse(data);
             List<ChatMessage> chatHistory = new List<ChatMessage>();
@@ -37,7 +37,7 @@ namespace ChatProject.Tools
                 ChatMessage testingMessage = new ChatMessage(jsonData["_id"].ToString(),
                     jsonData["author"].ToString(), jsonData["client"].ToString(),
                     jsonData["data"].ToString(), jsonData["text"].ToString());
-                chatHistory.Add(testingMessage);
+                chatHistory.Add(testingMessage); 
             }
             
 

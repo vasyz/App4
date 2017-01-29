@@ -24,15 +24,25 @@ namespace ChatProject
             SetContentView(Resource.Layout.Main);
             Button btn = FindViewById<Button>(Resource.Id.button1);
             TextView tw = FindViewById<TextView>(Resource.Id.textView1);
+            EditText inputMethod = FindViewById<EditText>(Resource.Id.editText1);
+            tw.MovementMethod = new Android.Text.Method.ScrollingMovementMethod();
+
             btn.Click += (sender, e) =>
             {
+                ChatSend.GetChatSendin(inputMethod.Text);
                 List<ChatMessage> chatHistory = Tools.ChatRequest.GetChatMessage();
                 tw.Text = "";
                 foreach (var msg in chatHistory)
                 {
                     tw.Text += msg.Author + ": " + msg.Text + "\n";
                 }
+
+
+
             };
+
+        
+                
         }
 
     }
