@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <dimen name="marginElementDefault">5dp</dimen>
+  <dimen name="textSizeNormal">20dp</dimen>
+  <dimen name="widthInputText">250dp</dimen>
+</resources>

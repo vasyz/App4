@@ -4,32 +4,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical">
-    <Switch
+    <Button
+        android:text="Refresh chat history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/switch1" />
+        android:id="@+id/btnRefresh"
+        android:layout_margin="@dimen/marginElementDefault" />
     <TextView
-        android:text="Text"
+        android:text="Update chat history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
+        android:id="@+id/chatHistory"
         android:scrollbars="vertical"
-        android:maxHeight="300dp"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbarSize="2dp"
         android:scrollbarStyle="insideInset"
-        android:verticalScrollbarPosition="defaultPosition" />
-    <EditText
-        android:inputType="text"
+        android:verticalScrollbarPosition="defaultPosition"
+        android:layout_margin="@dimen/marginElementDefault"
+        android:textSize="@dimen/textSizeNormal"
+        android:maxLines="20" />
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText1" />
-    <Button
-        android:text="Button"
-        android:layout_width="183.0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button1"
-        android:layout_marginTop="67.5dp"
-        android:layout_marginLeft="140.0dp"
-        android:fadeScrollbars="true" />
+        android:id="@+id/lineInput">
+        <EditText
+            android:inputType="textMultiLine"
+            android:id="@+id/inputMessage"
+            android:layout_width="@dimen/widthInputText"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/marginElementDefault" />
+        <Button
+            android:text="Send"
+            android:id="@+id/btnSend"
+            android:fadeScrollbars="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center" />
+    </LinearLayout>
 </LinearLayout>
