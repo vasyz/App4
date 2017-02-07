@@ -49,6 +49,7 @@ namespace ChatProject
                 {
                     twChatHistory.Text += msg.Author + ": " + msg.Text + "\n";
                 }
+                twChatHistory.SetHeight(300);
             };
         }
 
